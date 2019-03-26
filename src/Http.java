@@ -6,6 +6,7 @@ import java.io.OutputStream;
  * Http related constants
  */
 public class Http {
+  public int x = 0;
   public static final int OK = 200;
   public static final int BAD_REQUEST = 400;
   public static final int FORBIDDEN = 403;

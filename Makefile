@@ -1,15 +1,25 @@
-ROOT_DIR = $(shell git rev-parse --show-toplevel)
-LIB_DIR = $(ROOT_DIR)/lib
-TEST_DIR = $(ROOT_DIR)/test
-SRC_DIR = $(ROOT_DIR)/src
-BUILD_DIR = $(ROOT_DIR)/build
+LIB_DIR = lib
+TEST_DIR = test
+SRC_DIR = src
+BUILD_DIR = build
+ASSET_DIR = assets
+
+# java class path
+JC = $(LIB_DIR)/*:$(SRC_DIR):$(BUILD_DIR)
+
+FILES = Http Server Post PostDB MemoryPostDB
+CLASSES = $(patsubst %, $(SRC_DIR)/%.class, $(FILES))
 
 .PHONY: all
-all: $(CLASSES:%=%.class)
-	mv $(SRC_DIR)/*.class $(BUILD_DIR)
+all: $(CLASSES)
+	cp $(SRC_DIR)/*.class $(BUILD_DIR)
+
+.PHONY: serve
+serve: all
+	java -cp $(JC) Main $(ASSET_DIR)
 
 %.class: %.java
-	javac -cp $(LIB_DIR)/*:. $<
+	javac -cp $(JC) $<
 
 .PHONY: clean
 clean:
