@@ -21,4 +21,15 @@ class Post {
   }
 
   // TODO: public getters for fields, private setters for fields
+  public String getTitle() { return this.title; }
+  public String getAuthor() { return this.author; }
+  public String getBody() { return this.body; }
+  public long getTimeStamp() { return this.timeStamp; }
+  public int getVotes() { return this.votes; }
+
+  private void setTitle(String title) { this.title = title; }
+  private void setAuthor(String author) { this.author = author; }
+  private void setBody(String body) { this.body = body; }
+  private void setTimeStamp(long timeStamp) { this.timeStamp = timeStamp; }
+  private void setVotes(int votes) { this.votes = votes; }
 }
